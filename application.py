@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
-#import markovify
+import markovify
 import re
-#import spacy
+import spacy
 from forms import BoldifyEncryptForm
 from markupsafe import Markup
 from flask_ckeditor import CKEditor
