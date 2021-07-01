@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home Page</title>
-</head>
-<body>
-    <h1>Hello World with HTML!</h1>
-</body>
-</html>
+{% extends "template.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body %}
+    <h1>Welcome to your homepage!</h1>
+    <hr />
+{% endblock %}
