@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 #import markovify
 import re
 #import spacy
-#from forms import BoldifyEncryptForm
+from forms import BoldifyEncryptForm
 from markupsafe import Markup
 from flask_ckeditor import CKEditor
 
@@ -86,6 +86,18 @@ ckeditor = CKEditor(application)
 def home():
 	return render_template('home.html')
 
+@application.route('/encode', methods=['GET', 'POST'])
+def boldifyEncoder():
+  submitted = False
+  form = BoldifyEncryptForm()
+  output = None
+  if form.validate_on_submit():
+    submitted=True
+    msg=str(request.form['boldMessage']).lower()
+    msg=''.join([i for i in msg if i.isalpha()])
+    output=boldify(msg)
+  return render_template('encode.html', form=form, submitted=submitted, output=output)
+
 @application.route('/decode', methods=['GET', 'POST'])
 def boldifyDecoder():
   submitted=False
@@ -98,3 +110,5 @@ def boldifyDecoder():
     for i in iterator:
       decodedMessage += richText[i.span()[1]]
   return render_template('decode.html', submitted=submitted, decodedMessage=decodedMessage)
+
+application.run(host='0.0.0.0', port=8080)

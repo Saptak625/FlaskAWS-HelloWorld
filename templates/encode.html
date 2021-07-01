@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+
+{% block title %}Boldify Encoder{% endblock%}
+
+{% block body %}
+  {% if not submitted %}
+<h1>Boldify Encoder</h1>
+<hr>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.boldMessage.label(class="form-control-label") }}
+        {% if form.boldMessage.errors %}
+        {{ form.boldMessage(class="form-control form-control-lg is-invalid", style="border-color: #dc3545;") }}
+        <div style="width: 100%; margin-top: .25rem; font-size: 80%; color: #dc3545;">
+            {% for error in form.boldMessage.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.boldMessage(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+  {% else %}
+<h1>Boldify Encoder Output:</h1>
+<hr>
+    {% if output == None %}
+<h2>Error!</h2>
+    {% else %}
+<p style="font-size: 20px;">{{ output }}</p>
+<a href=""><button type="button" class="btn btn-primary btn-md">Boldify More Text!</button></a>
+    {% endif %}
+  {% endif %}
+{% endblock %}
