@@ -97,4 +97,4 @@ def boldifyDecoder():
     iterator = re.finditer("<strong>", richText)
     for i in iterator:
       decodedMessage += richText[i.span()[1]]
-  return render_template('boldifydecoder.html', submitted=submitted, decodedMessage=decodedMessage)
+  return render_template('decode.html', submitted=submitted, decodedMessage=decodedMessage)
