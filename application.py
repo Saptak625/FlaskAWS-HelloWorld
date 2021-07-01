@@ -7,7 +7,7 @@ from markupsafe import Markup
 from flask_ckeditor import CKEditor
 
 
-nlp = spacy.load("en_core_web_sm")
+#nlp = spacy.load("en_core_web_sm")
 
 class POSifiedText(markovify.Text):
     def word_split(self, sentence):
