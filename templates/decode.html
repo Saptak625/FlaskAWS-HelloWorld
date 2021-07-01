@@ -1,0 +1,23 @@
+{% block title %}Boldify Decoder{% endblock %}
+
+{% block body %}
+    {% if not submitted %}
+<h1>Boldify Decoder</h1>
+<hr>
+<form method="POST" action="">
+    <div class="form-group">
+        {{ ckeditor.create() }}
+    </div>
+    <input type="submit" class="btn btn-primary">
+</form>
+    {% else %}
+<h1>Boldify Decoder Results:</h1>
+<hr>
+<p style="font-size: 20px;">{{ decodedMessage }}</p>
+<a href=""><button type="button" class="btn btn-primary btn-md">Decode More Text!</button></a>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+{% endblock %}
