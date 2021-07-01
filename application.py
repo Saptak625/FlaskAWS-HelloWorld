@@ -6,7 +6,7 @@ from forms import BoldifyEncryptForm
 from markupsafe import Markup
 from flask_ckeditor import CKEditor
 
-"""
+
 nlp = spacy.load("en_core_web_sm")
 
 class POSifiedText(markovify.Text):
@@ -75,7 +75,7 @@ def boldify(msg):
       return Markup(''.join(boldifiedText).replace('\n', ''))
     counter += 1
   return None
-"""
+
 application = Flask('Boldify')
 application.config['SECRET_KEY'] = '7b7e30111ddc1f8a5b1d80934d336798'
 application.config['CKEDITOR_PKG_TYPE'] = 'basic'
