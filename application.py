@@ -18,21 +18,21 @@ class POSifiedText(markovify.Text):
         return sentence
 
 def getPara():
-  with open('data.txt','r', encoding='utf-8') as f:
+  with open('data.txt','rb') as f:
       text = f.read()
-
-  text_model = markovify.Text(text)
-  paragraph = " "
-  counter = 0
-  sentencesUsed = []
-  while counter < 20:
-    output = text_model.make_sentence()
-    if isinstance(output, str):
-      if output not in sentencesUsed:
-        sentencesUsed.append(output)
-        paragraph += output + " "
-        counter += 1
-  return paragraph
+  return str(text.decode("utf-8"))
+  # text_model = markovify.Text(text)
+  # paragraph = " "
+  # counter = 0
+  # sentencesUsed = []
+  # while counter < 20:
+  #   output = text_model.make_sentence()
+  #   if isinstance(output, str):
+  #     if output not in sentencesUsed:
+  #       sentencesUsed.append(output)
+  #       paragraph += output + " "
+  #       counter += 1
+  # return paragraph
 
 def boldify(msg):
   limit = 10
@@ -110,3 +110,5 @@ def boldifyDecoder():
     for i in iterator:
       decodedMessage += richText[i.span()[1]]
   return render_template('decode.html', submitted=submitted, decodedMessage=decodedMessage)
+
+application.run(host='0.0.0.0', port=8080)
