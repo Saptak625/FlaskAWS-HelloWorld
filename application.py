@@ -17,9 +17,8 @@ class POSifiedText(markovify.Text):
         return sentence
 
 def getPara():
-  with open('data.txt','rb') as f:
+  with open('data.txt','r', 'utf-8') as f:
       text = f.read()
-  return str(text.decode("utf-8"))
   text_model = markovify.Text(text)
   paragraph = " "
   counter = 0
