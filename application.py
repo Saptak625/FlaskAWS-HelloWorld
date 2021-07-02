@@ -6,8 +6,7 @@ from forms import BoldifyEncryptForm
 from markupsafe import Markup
 from flask_ckeditor import CKEditor
 
-
-#nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_sm")
 
 class POSifiedText(markovify.Text):
     def word_split(self, sentence):
@@ -21,18 +20,18 @@ def getPara():
   with open('data.txt','rb') as f:
       text = f.read()
   return str(text.decode("utf-8"))
-  # text_model = markovify.Text(text)
-  # paragraph = " "
-  # counter = 0
-  # sentencesUsed = []
-  # while counter < 20:
-  #   output = text_model.make_sentence()
-  #   if isinstance(output, str):
-  #     if output not in sentencesUsed:
-  #       sentencesUsed.append(output)
-  #       paragraph += output + " "
-  #       counter += 1
-  # return paragraph
+  text_model = markovify.Text(text)
+  paragraph = " "
+  counter = 0
+  sentencesUsed = []
+  while counter < 20:
+    output = text_model.make_sentence()
+    if isinstance(output, str):
+      if output not in sentencesUsed:
+        sentencesUsed.append(output)
+        paragraph += output + " "
+        counter += 1
+  return paragraph
 
 def boldify(msg):
   limit = 10
