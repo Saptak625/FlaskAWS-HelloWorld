@@ -64,10 +64,15 @@ def boldify(msg):
       remainingText[index] = '<b>'+remainingText[index]+'</b>'
       boldifiedText += remainingText[:index+1]
       remainingText = remainingText[index+1:]
-    try:
-      periodIndex = min([remainingText.index(i) for i in ['.', ';', '!', '?']]) 
-      boldifiedText += remainingText[:periodIndex+1]
-    except:
+    periodIndexes=[]
+    for j in ['.', ';', '!', '?']:
+      try:
+        periodIndexes.append(remainingText.index(j))
+      except ValueError:
+        print('None found.')
+    if periodIndexes:
+      boldifiedText += remainingText[:min(periodIndexes)+1]
+    else:       
       boldifiedText += remainingText
     if not error:
       return Markup(''.join(boldifiedText).replace('\n', ''))
